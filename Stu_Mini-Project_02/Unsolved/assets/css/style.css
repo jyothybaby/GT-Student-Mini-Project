@@ -1,0 +1,220 @@
+/* TODO: set css variables */
+:root {
+}
+
+/* TODO: set content highlight color and background */
+::selection {
+  background-color: rgb(80, 196, 167);
+  color:black;
+}
+
+html {
+  /* sets 1rem to 10px instead of native 16px to make it easier to calculate font-size values for the rest of the page (e.g. 1.6rem is 16px, 2.0rem is 20px, etc.) */
+  font-size: 62.5%;
+}
+
+
+body {
+  /* Sans Serif font stack is implemented to help select the best font for each type of computer operating system */
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica,
+    Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+
+  /* sets body font size to 1.75rem, which is 1.75x more than the font-size of 10px, making it 17.5px  */
+  font-size: 1.75rem;
+  line-height: 1.5;
+
+  /* TODO: Add color and background-color */
+  color: rgba(232, 103, 237, 0.8);
+  background-color: #0e0e0e; 
+}
+
+/* TODO: Add margin-bottom, color, font-weight, line-height */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  margin-bottom: 2px;
+  line-height: 2;
+  color:rgba(232, 103, 237, 0.8);
+  font-weight: 3px;
+
+}
+
+h1 {
+  /* 4rem = 40px (4 * 10px) */
+  font-size: 4rem;
+}
+
+h2 {
+  font-size: 2.5rem;
+}
+
+h3 {
+  font-size: 3rem;
+}
+
+h4 {
+  font-size: 2.5rem;
+}
+
+h5 {
+  font-size: 2rem;
+}
+
+h6 {
+  font-size: 1.5rem;
+}
+
+p {
+  margin-bottom: 1rem;
+}
+header p {
+  color: white;
+  justify-content: center;
+}
+code {
+  /* Monospace font stack is used for our code blocks to make it look more like code */
+  font-family: Consolas, "Andale Mono WT", "Andale Mono", "Lucida Console",
+    "Lucida Sans Typewriter", "DejaVu Sans Mono", "Bitstream Vera Sans Mono",
+    "Liberation Mono", "Nimbus Mono L", Monaco, "Courier New", Courier,
+    monospace;
+}
+
+header {
+  width: 96%;
+  margin: 0 auto;
+  padding: 2.5rem;
+  text-align: center;
+}
+
+header h1.page-title {
+  padding: 1rem 1.2rem;
+  font-size: 4.5rem;
+}
+
+main {
+  width: 96%;
+  margin: 2rem auto;
+}
+
+footer {
+  margin: 1.5rem;
+  text-align: center;
+}
+
+/* TODO: create our main grid with flexbox, use negative margins to offset the padding on the .card-column class */
+.row {
+  display:flex;
+  flex-direction: row;
+  flex-wrap:wrap;
+}
+
+/* TODO: center content with justify-content */
+.justify-center {
+  display:flex;
+  flex-direction:row;
+  flex-wrap:wrap;
+}
+
+/* TODO: using a mobile-first approach, add the flex property with a flex basis to be 100% and we'll update it using media queries for larger screen sizes */
+.card-column {
+ 
+  padding: 1.5rem;
+  display:flex;
+  flex-direction: column;
+  /* sets transition so when the screen resizes, makes it so our columns don't jump in size */
+  transition: flex-basis 500ms linear;
+  margin-bottom: 1.5rem;
+}
+
+/* TODO: make each code card a flexbox column to align and justify content within it */
+/* TODO: add color, add outline and outline offset. outline is like border, but on the outside of the box instead of inside */
+.code-card {
+  min-height: 100%;
+  padding: 2rem;
+  transition: all 0.5s ease-in-out;
+  outline: 1px white dashed;
+  outline-offset: 5px;
+}
+
+.code-card .card-header {
+  /* TODO: use position and negative margins to move title of card over the card's outline and create an overlap effect */
+  /* TODO: add padding, background color, color, border, border-radius */
+  transition: all 0.5s ease-in-out;
+  padding:5px;
+  position:relative;
+  margin-top:-50px;
+  border: 1px white solid;
+  border-radius: 10px;
+  background-color: black;
+}
+
+/* TODO: set an outer and inner box shadow on the card to create a glowing effect on hover */
+.code-card:hover,
+.code-card:hover .card-header {
+  position:relative;
+  top:-4px;
+  box-shadow: inset 0px 0px 8px rgba(232, 102, 236, 1), 0 0 15px rgba(232, 102, 236, 1);
+  }
+
+/* TODO: set each card's code block to grow with flex-grow to the height of the largest code block on the page, making each card even in height */
+.code-card .code-block {
+  flex: 1 1 100%;
+  color:white;
+  font-size: 15px;
+
+}
+
+.code-card pre {
+  /* sets styles to make it so code wraps in <pre> instead of overflowing */
+  white-space: pre-wrap;
+  overflow: auto;
+  tab-size: 4;
+  padding: 1.2rem 1rem;
+  color: var(--gin);
+  border-radius: 8px;
+  /* uses linear-gradient() function to create a fading background  */
+  background-image: linear-gradient(
+    rgba(232, 102, 236, 0.3) 0%,
+    rgba(232, 102, 236, 0.6) 100%
+  );
+  display: flex;
+  align-items: center;
+}
+
+/* TODO: on <pre> click, select all contents with user-select so the code is highlighted */
+.code-card pre:active {
+  background-color: yellowgreen;
+}
+
+/* using a mobile-first approach, use `min-width` values going from narrow -> wide for a responsive design */
+@media screen and (min-width: 768px) {
+  /* TODO: on tablets, set columns to only be 50% of the width and not grow */
+  
+  .card-column {
+    width:50%;
+    flex: 0 1 auto; 
+  }
+
+  /* TODO: Select the last card-column child to grow to full width if it has space to grow */
+  .code-block {
+    flex: 1 1 auto; 
+    
+  }
+}
+
+
+/* media query for larger screens */
+
+@media screen and (min-width: 992px) {
+  header {
+    width: 75%;
+  }
+
+  .card-column {
+    flex: 0 0 33.333%;
+    max-width: 33.333%;
+  }
+}
